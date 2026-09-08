@@ -2,7 +2,7 @@
 
 [BMW Drive Recorder](https://www.bmw.de/de/shop/ls/dp/Base_Drive_Recorder_de) uses the car's ADAS cameras (front, rear, and both sides) to record its surroundings (up to 60s per recording). A USB export creates four separate per-camera videos plus an accompanying XML telemetry file (vehicle speed and GPS position). **This CLI tool stitches that data dump into a single video with a synchronized map and speed information overlay**.
 
-![Composed 2×2 clip](docs/demo.gif)
+<img src="docs/demo.gif" alt="Composed 2×2 clip" width="100%">
 
 > [!WARNING]
 > Tested on **iDrive 8.5** with German exports - other iDrive versions and languages are untested. **This project is not affiliated or associated with BMW.** It is for personal use on Drive Recorder exports you already own.
@@ -31,7 +31,7 @@ Telemetry is in the XML (`<ENTRY>` about every 15 frames at **30 fps**; `ID` is 
 
 
 > [!TIP]
-> `tests/fixtures/sample/` is a real 5 s clip (dummy VIN, original GPS/speed). 
+> `tests/fixtures/sample/` is a real 5 s clip with some telemetry data (dummy VIN, original GPS/speed). Use it to try out the tool or improve it.
 
 ## Usage (Docker)
 
