@@ -2,14 +2,14 @@
 
 [BMW Drive Recorder](https://www.bmw.de/de/shop/ls/dp/Base_Drive_Recorder_de) uses the car's ADAS cameras (front, rear, and both sides) to record its surroundings (up to 60s per recording). A USB export creates four separate per-camera videos plus an accompanying XML telemetry file (vehicle speed and GPS position). **This CLI tool stitches that data dump into a single video with a synchronized map and speed information overlay**.
 
-<img src="docs/demo.gif" alt="Composed 2×2 clip" width="100%">
+![Composed 2×2 clip](docs/demo.gif)
 
 > [!WARNING]
 > Tested on **iDrive 8.5** with German exports - other iDrive versions and languages are untested. **This project is not affiliated or associated with BMW.** It is for personal use on Drive Recorder exports you already own.
 
-## Expected Data Format
+## Expected Input Data Format
 
-USB exports from **iDrive 8.5** clips up to 60 s. Other OS versions and languages are currently untested. Filenames use German camera names, while raw `*_Rohdaten.mp4` videos are ignored. ``The XML stem must match the camera prefixes:
+File structure should match the expected default naming scheme:
 
 ```yaml
 yyyy-mm-dd_hh-mm-ss_<trigger>/
@@ -49,12 +49,15 @@ For `h264_nvenc`, pass `--gpus all` on `run` if the NVIDIA container toolkit can
 
 ### Options
 
-Omitted flags use the defaults below. On a TTY, the wizard lets you pick with arrow keys.
+Omitted flags use the defaults below. On a TTY, the wizard lets you **use arrow keys**. The main decision is the video mosaic pattern:
 
-| 2×2 grid              | Hero (front on top)         |
-| --------------------- | --------------------------- |
-| ![2x2](docs/demo.png) | ![hero](docs/demo-hero.png) |
-Map tiles © [OpenStreetMap](https://www.openstreetmap.org/copyright).
+
+| 2×2 grid                                                              | Hero (front on top)         |
+| --------------------------------------------------------------------- | --------------------------- |
+| ![2x2](docs/demo.png)                                                 | ![hero](docs/demo-hero.png) |
+| Map tiles © [OpenStreetMap](https://www.openstreetmap.org/copyright). |                             |
+
+The following lists all possible options:
 
 | Flag                | Default                 | Description                                                           |
 | ------------------- | ----------------------- | --------------------------------------------------------------------- |
@@ -80,7 +83,8 @@ Map tiles © [OpenStreetMap](https://www.openstreetmap.org/copyright).
 | `--all`             | off                     | Compose every recording subfolder                                     |
 | `--theme`           | off                     | YAML HUD theme (colors, font)                                         |
 
-## Theme
+
+### Theme
 
 `--theme` is a YAML file for HUD colors and font. Unset keys keep defaults.
 
@@ -91,7 +95,7 @@ speed_scale_kmh: 250
 speed_scale_mph: 160
 ```
 
-### Examples
+## Sample Usage
 
 ```bash
 docker compose run --build --rm bmw-compose tests/fixtures/sample --layout hero-bottom --hero front --no-map
@@ -100,7 +104,7 @@ docker compose run --build --rm --gpus all bmw-compose path/to/export --codec h2
 docker compose run --build --rm bmw-compose tests/fixtures/sample --theme tests/fixtures/theme.yaml --no-map
 ```
 
-## Host install (optional)
+## Host Install (optional)
 
 ```bash
 # Ubuntu/Debian
