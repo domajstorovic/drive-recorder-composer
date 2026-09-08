@@ -2,16 +2,10 @@
 
 [BMW Drive Recorder](https://www.bmw.de/de/shop/ls/dp/Base_Drive_Recorder_de) uses the car's ADAS cameras (front, rear, and both sides) to record its surroundings (up to 60s per recording). A USB export creates four separate per-camera videos plus an accompanying XML telemetry file (vehicle speed and GPS position). **This CLI tool stitches that data dump into a single video with a synchronized map and speed information overlay**.
 
+![Composed 2×2 clip](docs/demo.gif)
+
 > [!WARNING]
 > Tested on **iDrive 8.5** with German exports - other iDrive versions and languages are untested. **This project is not affiliated or associated with BMW.** It is for personal use on Drive Recorder exports you already own.
-
-
-| 2×2 grid              | Hero (front on top)         |
-| --------------------- | --------------------------- |
-| ![2x2](docs/demo.png) | ![hero](docs/demo-hero.png) |
-
-
-Map tiles © [OpenStreetMap](https://www.openstreetmap.org/copyright).
 
 ## Expected Data Format
 
@@ -39,8 +33,6 @@ Telemetry is in the XML (`<ENTRY>` about every 15 frames at **30 fps**; `ID` is 
 > [!TIP]
 > `tests/fixtures/sample/` is a real 5 s clip (dummy VIN, original GPS/speed). 
 
-
-
 ## Usage (Docker)
 
 Docker is the intended way to use this tool:
@@ -59,6 +51,10 @@ For `h264_nvenc`, pass `--gpus all` on `run` if the NVIDIA container toolkit can
 
 Omitted flags use the defaults below. On a TTY, the wizard lets you pick with arrow keys.
 
+| 2×2 grid              | Hero (front on top)         |
+| --------------------- | --------------------------- |
+| ![2x2](docs/demo.png) | ![hero](docs/demo-hero.png) |
+Map tiles © [OpenStreetMap](https://www.openstreetmap.org/copyright).
 
 | Flag                | Default                 | Description                                                           |
 | ------------------- | ----------------------- | --------------------------------------------------------------------- |
@@ -84,7 +80,6 @@ Omitted flags use the defaults below. On a TTY, the wizard lets you pick with ar
 | `--all`             | off                     | Compose every recording subfolder                                     |
 | `--theme`           | off                     | YAML HUD theme (colors, font)                                         |
 
-
 ## Theme
 
 `--theme` is a YAML file for HUD colors and font. Unset keys keep defaults.
@@ -95,8 +90,6 @@ card_bg: [30, 30, 30]
 speed_scale_kmh: 250
 speed_scale_mph: 160
 ```
-
-
 
 ### Examples
 
@@ -119,8 +112,6 @@ brew install ffmpeg
 pip install -e .
 bmw-compose tests/fixtures/sample -o out.mp4 --no-map
 ```
-
-
 
 ## License
 
