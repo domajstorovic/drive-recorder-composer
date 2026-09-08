@@ -1,0 +1,5 @@
+# Optional HUD theme. Unspecified keys keep defaults.
+
+accent: [255, 80, 0]
+card_bg: [20, 20, 24]
+speed_scale_kmh: 160

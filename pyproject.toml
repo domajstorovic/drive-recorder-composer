@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bmw-drive-recorder"
+version = "0.1.0"
+description = "Compose BMW Drive Recorder multi-camera exports into a single video with HUD and minimap"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+dependencies = [
+    "Pillow>=10.0",
+    "rich>=13.0",
+]
+
+[project.scripts]
+bmw-compose = "bmw_drive_recorder.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

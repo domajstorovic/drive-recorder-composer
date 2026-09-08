@@ -1,0 +1,19 @@
+# Local recordings and compose output (may contain VIN, GPS, plates)
+data/
+*.mp4
+out.mp4
+*_composed.mp4
+*.composed.mp4
+output/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.venv/
+.pytest_cache/
+
+# Fixture videos used by tests and Docker examples
+!tests/fixtures/**/*.mp4

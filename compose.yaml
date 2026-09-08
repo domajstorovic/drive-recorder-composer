@@ -1,0 +1,6 @@
+services:
+  bmw-compose:
+    build: .
+    volumes:
+      - .:/work
+    working_dir: /work
